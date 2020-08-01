@@ -8,6 +8,10 @@ function setup() {
     updateAnimation();
 }
 
+function touchMoved() {
+    updateAnimation(); // I think this makes it mobile friendly lol
+}
+
 function mouseMoved() {
     updateAnimation();
 }
