@@ -1,6 +1,6 @@
 p5.disableFriendlyErrors = true;
 
-var inc = 0.03;
+var inc = 0.047;
 var start = 0;
 
 function setup() {
@@ -8,8 +8,15 @@ function setup() {
     updateAnimation();
 }
 
-function touchMoved() {
-    updateAnimation(); // I think this makes it mobile friendly lol
+function draw() {}
+
+// Make it mobile friendly
+function touchStarted() {
+    draw = (() => updateAnimation());
+}
+
+function touchEnded() {
+    draw = (() => {});
 }
 
 function mouseMoved() {
@@ -25,7 +32,7 @@ function updateAnimation() {
         
         beginShape();
     
-        for (var x = 0; x < width; x += 3) {
+        for (var x = 0; x < width; x += 4) {
             stroke(0);
             // var y = map(noise(offsetX), 0, 1, 0, height);
             var y = noise(offsetX) * height + offsetY;
