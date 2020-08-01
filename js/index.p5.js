@@ -34,7 +34,7 @@ function updateAnimation() {
         var offsetX = start;
         beginShape();
     
-        for (var x = 0; x < width; x += 4) {
+        for (var x = width; x > 0; x -= 4) {
             stroke(0);
             var y = noise(offsetX) * height + offsetY;
             vertex(x, y);

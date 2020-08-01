@@ -34,10 +34,9 @@ canvas {
     bottom: 0px;
 }
 .scrolling {
-    font-family: 'Hiragino Kaku Gothic Pro', 'WenQuanYi Zen Hei', '微軟正黑體', '蘋果儷中黑', Helvetica, Arial, sans-serif;
+    font-family: 'Hiragino Sans W1', 'Hiragino Kaku Gothic Pro', 'WenQuanYi Zen Hei', '微軟正黑體', '蘋果儷中黑', Helvetica, Arial, sans-serif;
     font-size: xx-large;
     animation: marquee 20s linear infinite;
-    animation-direction: reverse;
     display: inline-block;
     padding-right: 10px;
 }
