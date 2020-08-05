@@ -3,28 +3,46 @@
     <head>
         <link rel="icon" href="">
         <script src="https://cdn.jsdelivr.net/npm/p5@1.1.9/lib/p5.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <link rel="stylesheet" href="./css/index.css">
+        <script src="./js/index.js"></script>
     </head>
-    <body>
+    <body onmouseup="resetButtons();">
         <script src="./js/index.p5.js"></script>
-        <div id="mainbox">
-            <div class="text" id="title">
-                Xander Koo
+        <div class="maincontainer">
+            <div class="menubar">
+                <div class="menubutton" onmousedown="buttonClicked(this);" onmouseup="location.href='./';"><div class="menubuttontext">
+                    about
+                </div></div>
+                <div class="menubutton" onmousedown="buttonClicked(this);" onmouseup="location.href='./info/resume.pdf';"><div class="menubuttontext">
+                    resume
+                </div></div>
+                <div class="menubutton" onmousedown="buttonClicked(this);" onmouseup="location.href='https:\/\/www.linkedin.com/in/xanderkoo/';"><div class="menubuttontext">
+                    linkedin
+                </div></div>
+                <div class="menubutton" onmousedown="buttonClicked(this);" onmouseup="location.href='https:\/\/twitter.com/xanderkoo';"><div class="menubuttontext">
+                    twitter
+                </div></div>
+                <div class="menubutton" onmousedown="buttonClicked(this);" onmouseup="location.href='https:\/\/github.com/xanderkoo';"><div class="menubuttontext">
+                    github
+                </div></div>
             </div>
-            <p class="text" id="bio">
-                I am a rising senior at Pomona College, majoring in computer science and minoring
-                in Asian studies.
-            </br></br>
-                I am broadly interested in the topics of HCI, AI, ML, and computer vision.
-            </br></br>
-                Also interested in tech ethics, activism, politics, street/hip-hop dance,
-                Taiwanese/Japanese culture, and any intersection of the aforementioned areas.
-            </p>
-            <a href="./info/resume.pdf" class="text">Resume</a></br>
-            <a href="https://www.linkedin.com/in/xanderkoo/" class="text">LinkedIn</a></br>
-            <a href="https://twitter.com/xanderkoo" class="text">Twitter</a></br>
-            <a href="https://github.com/xanderkoo"class="text">GitHub</a></br>
+            <div id="bio">
+                <div class="text" id="title">
+                    Xander Koo
+                </div>
+                <p class="text">
+                    I am a rising senior at Pomona College, majoring in computer science and minoring
+                    in Asian studies.
+                </br></br>
+                    I am broadly interested in the topics of HCI, AI, ML, and computer vision.
+                </br></br>
+                    Also interested in tech ethics, activism, politics, street/hip-hop dance,
+                    Taiwanese/Japanese culture, and any intersection of the aforementioned areas.
+                </p>
+            </div>
         </div>
+
         <div class="scroll-container" id="bottom-container">
             <div class="scrolling">
                 雞逐鳳同飛 髙林整羽儀 棹舟須濟岸 寳貨滿船歸

@@ -6,16 +6,46 @@ body {
 canvas {
     margin:auto;
 }
-#mainbox {
+.maincontainer {
     position: absolute;
     top: 50vh;
     left: 50vw;
-    margin: calc(-25vh - 20px) calc(-25vw - 20px);
+    width: 60vw;
+    height: 60vh;
+    margin: -30vh -30vw;
+}
+#bio {
+    position: absolute;
+    right: 0;
+    margin: 0 0 0 0;
     background-color: rgb(255, 255, 255);
+    width: calc(80% - 42px);
+    height: calc(100% - 42px);
     border: 1px dashed black;
-    width: 50vw;
-    height: 50vh;
     padding: 20px
+}
+.menubar {
+    position: absolute;
+    left: 0;
+    height: 100%;
+    width: 20%;
+}
+.menubutton {
+    position: relative;
+    margin: 0 0 10% 0;
+    background-color: rgb(255, 255, 255);
+    width: calc(90% - 2px);
+    height: calc(10% - 2px);
+    border: 1px dashed black;
+
+}
+.menubuttontext {
+    text-align: center;
+    font-family: "Courier New", Courier, monospace;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
 }
 .text {
     font-family: "Courier New", Courier, monospace;
