@@ -8,14 +8,13 @@ canvas {
 }
 #mainbox {
     position: absolute;
-    top: 50%;
-    left: 50%;
-    margin-left: -320px;
-    margin-top: -160px;
-    background-color: white;
+    top: 50vh;
+    left: 50vw;
+    margin: calc(-25vh - 20px) calc(-25vw - 20px);
+    background-color: rgb(255, 255, 255);
     border: 1px dashed black;
-    width: 640px;
-    height: 320px;
+    width: 50vw;
+    height: 50vh;
     padding: 20px
 }
 .text {
