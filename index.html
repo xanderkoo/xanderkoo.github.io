@@ -7,23 +7,23 @@
         <link rel="stylesheet" href="./css/index.css">
         <script src="./js/index.js"></script>
     </head>
-    <body onmouseup="resetButtons()">
+    <body>
         <script src="./js/index.p5.js"></script>
         <div class="maincontainer">
             <div class="menubar">
-                <div class="menubutton" onmouseup="location.href='./'" onmousedown="buttonClicked(this)" onmouseover="moving=true" onmouseout="moving=false">
+                <div class="menubutton" onmouseup="location.href='./'" onmouseover="mouseOverButton(this)" onmouseout="mouseOutButton(this)">
                     <div class="menubuttontext">about</div>
                 </div>
-                <div class="menubutton" onmouseup="location.href='./info/resume.pdf'" onmousedown="buttonClicked(this)" onmouseover="moving=true" onmouseout="moving=false">
+                <div class="menubutton" onmouseup="location.href='./info/resume.pdf'" onmouseover="mouseOverButton(this)" onmouseout="mouseOutButton(this)">
                     <div class="menubuttontext">resume</div>
                 </div>
-                <div class="menubutton" onmouseup="location.href='https:\/\/www.linkedin.com/in/xanderkoo/'" onmousedown="buttonClicked(this)" onmouseover="moving=true" onmouseout="moving=false">
+                <div class="menubutton" onmouseup="location.href='https:\/\/www.linkedin.com/in/xanderkoo/'" onmouseover="mouseOverButton(this)" onmouseout="mouseOutButton(this)">
                     <div class="menubuttontext">linkedin</div>
                 </div>
-                <div class="menubutton" onmouseup="location.href='https:\/\/twitter.com/xanderkoo'" onmousedown="buttonClicked(this)" onmouseover="moving=true" onmouseout="moving=false">
+                <div class="menubutton" onmouseup="location.href='https:\/\/twitter.com/xanderkoo'" onmouseover="mouseOverButton(this)" onmouseout="mouseOutButton(this)">
                     <div class="menubuttontext">twitter</div>
                 </div>
-                <div class="menubutton" onmouseup="location.href='https:\/\/github.com/xanderkoo'" onmousedown="buttonClicked(this)" onmouseover="moving=true" onmouseout="moving=false">
+                <div class="menubutton" onmouseup="location.href='https:\/\/github.com/xanderkoo'" onmouseover="mouseOverButton(this)" onmouseout="mouseOutButton(this)">
                     <div class="menubuttontext">github</div>
                 </div>
             </div>
