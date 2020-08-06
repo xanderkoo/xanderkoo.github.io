@@ -58,5 +58,5 @@ function updateFluxAnimation() {
         }
         endShape();
     }
-    fluxParam += 0.02;
+    fluxParam += 0.01;
 }
