@@ -9,12 +9,14 @@ function mouseOutButton(elt) {
 }
 
 function mouseOverBio(elt) {
+    fluctuating = true;
     elt.className = "border";
     elt.style.cssText += ";border: none; padding: 21px;"
     console.log('hey')
 }
 
 function mouseOutBio(elt) {
+    fluctuating = false;
     elt.className = "";
     elt.style.cssText += ";border: 1px dashed black; padding: 20px;"
 }
