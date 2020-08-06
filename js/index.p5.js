@@ -1,25 +1,25 @@
 p5.disableFriendlyErrors = true;
-var moving = false;
+var scrolling = false;
 
 function setup() {
     createCanvas(windowWidth, windowHeight);
-    updateAnimation();
+    updateScrollAnimation();
 }
 
 function windowResized() {
     resizeCanvas(windowWidth, windowHeight);
-    updateAnimation();
+    updateScrollAnimation();
 }
 
 function draw() {
-    if (moving) {
-        updateAnimation();
+    if (scrolling) {
+        updateScrollAnimation();
     }
 }
 
 var start = 0;
 
-function updateAnimation() {
+function updateScrollAnimation() {
     background(255)
     noFill();
     for (var l = 0, offsetY = -height; l < 10; l++, offsetY += height/5) {

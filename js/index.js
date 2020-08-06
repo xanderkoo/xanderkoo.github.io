@@ -1,20 +1,21 @@
 function mouseOverButton(elt) {
-    moving = true;
+    scrolling = true;
     elt.style.cssText += ";border: 1px solid black; background-color: transparent"
 }
 
 function mouseOutButton(elt) {
-    moving = false;
+    scrolling = false;
     elt.style.cssText += ";border: 1px dashed black; background-color: white"
 }
 
 function mouseOverBio(elt) {
-    // moving = true;
-    // elt.style.cssText += ";border: 1px dashed white; background-color: black; color: white;"
+    elt.className = "border";
+    elt.style.cssText += ";border: none; padding: 21px;"
+    console.log('hey')
 }
 
 function mouseOutBio(elt) {
-    // moving = false;
-    // elt.style.cssText += ";border: 1px dashed black; background-color: white; color: black;"
+    elt.className = "";
+    elt.style.cssText += ";border: 1px dashed black; padding: 20px;"
 }
 

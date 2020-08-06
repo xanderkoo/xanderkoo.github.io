@@ -38,6 +38,7 @@ canvas {
     height: calc(10% - 2px);
     border: 1px dashed black;
     cursor: pointer;
+    overflow: hidden;
 }
 .menubuttontext {
     text-align: center;
@@ -76,6 +77,46 @@ canvas {
     -moz-user-select: none; /* Firefox */
     -ms-user-select: none; /* IE10+/Edge */
     user-select: none; /* Standard */
+}
+.border{
+    background: -webkit-linear-gradient(0deg, black 60%, transparent 60%), -webkit-linear-gradient(0deg, black 60%, transparent 60%), -webkit-linear-gradient(90deg, black 60%, transparent 60%), -webkit-linear-gradient(90deg, black 60%, transparent 60%);
+    background: -moz-linear-gradient(90deg, black 60%, transparent 60%), -moz-linear-gradient(90deg, black 60%, transparent 60%), -moz-linear-gradient(0deg, black 60%, transparent 60%), -moz-linear-gradient(0deg, black 60%, transparent 60%);
+    background: linear-gradient(to right, black 60%, transparent 60%), linear-gradient(to left, black 60%, transparent 60%), linear-gradient(to top, black 60%, transparent 60%), linear-gradient(to bottom, black 60%, transparent 60%);
+    background-repeat: repeat-x, repeat-x, repeat-y, repeat-y;
+    background-size: 5px 1px, 5px 1px, 1px 5px, 1px 5px;
+    background-position: 0% 0%, 100% 100%, 0% 100%, 100% 0%;
+}
+.border:hover{
+    -webkit-animation: border-dance 10s infinite linear;
+    -moz-animation: border-dance 10s infinite linear;
+    animation: border-dance 10s infinite linear;
+}
+
+@-webkit-keyframes border-dance{
+    0% {
+      background-position: 0% 0%, 100% 100%, 0% 100%, 100% 0%;
+    }
+    100% {
+      background-position: 100% 0%, 0% 100%, 0% 0%, 100% 100%;
+    }
+}
+
+@-moz-keyframes border-dance{
+    0% {
+        background-position: 0% 0%, 100% 100%, 0% 100%, 100% 0%;
+    }
+    100% {
+    background-position: 100% 0%, 0% 100%, 0% 0%, 100% 100%;
+    }
+}
+
+@keyframes border-dance{
+    0% {
+        background-position: 0% 0%, 100% 100%, 0% 100%, 100% 0%;
+    }
+    100% {
+    background-position: 100% 0%, 0% 100%, 0% 0%, 100% 100%;
+    }
 }
 
 @keyframes marquee {
