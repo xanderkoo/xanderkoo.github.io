@@ -22,7 +22,7 @@ canvas {
     width: calc(80% - 42px);
     height: calc(100% - 42px);
     border: 1px dashed black;
-    padding: 20px
+    padding: 20px;
 }
 .menubar {
     position: absolute;

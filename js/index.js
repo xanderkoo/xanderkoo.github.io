@@ -1,14 +1,20 @@
 function mouseOverButton(elt) {
-    // clickedButton = elt;
-    moving=true
-    elt.style.backgroundColor = "transparent";
-    // elt.getElementById
+    moving = true;
+    elt.style.cssText += ";border: 1px solid black; background-color: transparent"
 }
 
 function mouseOutButton(elt) {
-    // clickedButton = elt;
-    moving=false
-    elt.style.backgroundColor = "white";
-    // elt.getElementById
+    moving = false;
+    elt.style.cssText += ";border: 1px dashed black; background-color: white"
+}
+
+function mouseOverBio(elt) {
+    // moving = true;
+    // elt.style.cssText += ";border: 1px dashed white; background-color: black; color: white;"
+}
+
+function mouseOutBio(elt) {
+    // moving = false;
+    // elt.style.cssText += ";border: 1px dashed black; background-color: white; color: black;"
 }
 
