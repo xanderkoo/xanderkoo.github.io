@@ -1,4 +1,5 @@
 p5.disableFriendlyErrors = true;
+var moving = false;
 
 function setup() {
     createCanvas(windowWidth, windowHeight);
@@ -10,19 +11,10 @@ function windowResized() {
     updateAnimation();
 }
 
-function draw() {}
-
-// Make it mobile friendly
-function touchStarted() {
-    draw = (() => updateAnimation());
-}
-
-function touchEnded() {
-    draw = (() => {});
-}
-
-function mouseMoved() {
-    updateAnimation();
+function draw() {
+    if (moving) {
+        updateAnimation();
+    }
 }
 
 var start = 0;
