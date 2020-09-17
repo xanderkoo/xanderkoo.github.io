@@ -12,7 +12,6 @@ function mouseOverBio(elt) {
     fluctuating = true;
     elt.className = "border";
     elt.style.cssText += ";border: none; padding: 21px;"
-    console.log('hey')
 }
 
 function mouseOutBio(elt) {

@@ -1,7 +1,8 @@
 body {
-    margin:0;
-    padding:0;
+    margin: 0;
+    padding: 0;
     overflow: hidden;
+    text-align: center;
 }
 canvas {
     margin:auto;
@@ -11,6 +12,7 @@ canvas {
     top: 50vh;
     left: 50vw;
     width: 50vw;
+    /* min-width: 500px; */
     height: 50vh;
     margin: -25vh -25vw;
 }
@@ -23,22 +25,23 @@ canvas {
     height: calc(100% - 42px);
     border: 1px dashed black;
     padding: 20px;
+    overflow: scroll;
 }
 .menubar {
     position: absolute;
     left: 0;
-    height: 100%;
-    width: 20%;
+    height: 30vh;
+    width: 10vw;
 }
 .menubutton {
     position: relative;
     margin: 0 0 10% 0;
     background-color: rgb(255, 255, 255);
     width: calc(90% - 2px);
-    height: calc(10% - 2px);
+    height: calc(20% - 2px);
     border: 1px dashed black;
     cursor: pointer;
-    overflow: hidden;
+    overflow: auto;
 }
 .menubuttontext {
     text-align: center;
@@ -51,12 +54,20 @@ canvas {
     -moz-user-select: none; /* Firefox */
     -ms-user-select: none; /* IE10+/Edge */
     user-select: none; /* Standard */
+    
+    font-size: 14px; /* fallback */
+    /* font-size: max(1vmax, 14px); */
+    font-size: 1vmax;
 }
 .text {
     font-family: "Courier New", Courier, monospace;
+    font-size: 14px; /* fallback */
+    font-size: max(1vmax, 12px);
+    text-align: left;
 }
 #title {
-    font-size: x-large;
+    font-size: 28px; /* fallback */
+    font-size: max(2vmax, 24px);
 }
 .scroll-container {
     overflow: hidden;
