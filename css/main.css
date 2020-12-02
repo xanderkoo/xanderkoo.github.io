@@ -1,3 +1,32 @@
+:root {
+    --dashed-line-thickness: 1px;
+    --dashed-line-animation-duration: 10s;
+
+    --main-container-width: 50vw;
+    --main-container-height: 50vh;
+
+    --menubar-width-ratio: 0.20;
+    --menubar-width: calc(var(--menubar-width-ratio) * var(--main-container-width));
+    --menubar-height: var(--main-container-height);
+    --menuitem-padding: 12px;
+    --menubutton-height-ratio: 0.10; /* height of menu button as a ratio to the height of the menubar */
+    --menubutton-height: calc(var(--menubutton-height-ratio) * var(--menubar-height));
+    
+    --textbox-padding: 20px;
+    --textbox-width: calc(var(--main-container-width) - var(--menubar-width)); /* width of text box as a ratio of the width of the main container */
+    --textbox-height: = var(--main-container-height);
+
+    --title-font-size-default: 28px;
+    --title-font-size-ideal: 2vmax; /* vmax is proportional to the longest side of the window */
+
+    --text-font-size-default: 14px;
+    --text-font-size-ideal: 1vmax; /* vmax is proportional to the longest side of the window */
+
+    --scrolltext-cycle-duration: 60s;
+    --scrolltext-font-size: 24px;
+    --scrolltext-padding: 12px;
+}
+
 body {
     margin: 0;
     padding: 0;
@@ -9,37 +38,57 @@ canvas {
 }
 .maincontainer {
     position: absolute;
-    top: 50vh;
-    left: 50vw;
-    width: 50vw;
+    top: calc(100vh - var(--main-container-height));
+    left: calc(100vw - var(--main-container-width));
+    width: var(--main-container-width);
     /* min-width: 500px; */
-    height: 50vh;
-    margin: -25vh -25vw;
+    height: var(--main-container-height);
+    margin: calc(var(--main-container-height) / -2) calc(var(--main-container-width) / -2);
 }
 #bio {
     position: absolute;
-    right: 0;
+    left: calc(var(--menubar-width));
     margin: 0 0 0 0;
     background-color: rgb(255, 255, 255);
-    width: calc(80% - 42px);
-    height: calc(100% - 42px);
-    border: 1px dashed black;
-    padding: 20px;
+    width: calc(var(--textbox-width) - 2 * var(--textbox-padding) - 2 * var(--dashed-line-thickness));
+    height: var(--main-container-height);
+    border: var(--dashed-line-thickness) dashed black;
+    padding: var(--textbox-padding);
     overflow: scroll;
 }
 .menubar {
     position: absolute;
+    height: var(--menubar-height);
+    width: var(--menubar-width);
+}
+.left {
     left: 0;
-    height: 30vh;
-    width: 10vw;
+    float: left;
+}
+.right {
+    right: 0;
+    float: right;
+}
+.headshot-box {
+    position: relative;
+    margin: 0 0 var(--menuitem-padding) 0;
+    background-color: rgb(255, 255, 255);
+    width: calc(var(--menubar-width) - var(--menuitem-padding) - 2 * var(--dashed-line-thickness));
+    height: calc(var(--menubar-width) - var(--menuitem-padding) - 2 * var(--dashed-line-thickness));
+    border: var(--dashed-line-thickness) dashed black;
+    overflow: auto;
+}
+#headshot {
+    max-width: 100%;
+    max-height: 100%;
 }
 .menubutton {
     position: relative;
-    margin: 0 0 10% 0;
+    margin: 0 0 var(--menuitem-padding) 0;
     background-color: rgb(255, 255, 255);
-    width: calc(90% - 2px);
-    height: calc(20% - 2px);
-    border: 1px dashed black;
+    width: calc(var(--menubar-width) - var(--menuitem-padding) - 2 * var(--dashed-line-thickness));
+    height: calc(var(--menubutton-height) - 2 * var(--dashed-line-thickness));
+    border: var(--dashed-line-thickness) dashed black;
     cursor: pointer;
     overflow: auto;
 }
@@ -61,13 +110,13 @@ canvas {
 }
 .text {
     font-family: "Courier New", Courier, monospace;
-    font-size: 14px; /* fallback */
-    font-size: max(1vmax, 12px);
+    font-size: var(--text-font-size-default); /* fallback */
+    font-size: max(var(--text-font-size-ideal), var(--text-font-size-default));
     text-align: left;
 }
 #title {
-    font-size: 28px; /* fallback */
-    font-size: max(2vmax, 24px);
+    font-size: var(--title-font-size-default); /* fallback */
+    font-size: max(var(--title-font-size-ideal), var(--title-font-size-default));
 }
 .scroll-container {
     overflow: hidden;
@@ -80,10 +129,10 @@ canvas {
 }
 .scrolling {
     font-family: 'Hiragino Sans W1', 'Hiragino Kaku Gothic Pro', 'WenQuanYi Zen Hei', '微軟正黑體', '蘋果儷中黑', Helvetica, Arial, sans-serif;
-    font-size: xx-large;
-    animation: marquee 60s linear infinite;
+    font-size: var(--scrolltext-font-size);
+    animation: marquee var(--scrolltext-cycle-duration) linear infinite;
     display: inline-block;
-    padding-right: 10px;
+    padding-right: var(--scrolltext-padding);
     -webkit-user-select: none; /* Safari */        
     -moz-user-select: none; /* Firefox */
     -ms-user-select: none; /* IE10+/Edge */
@@ -98,9 +147,9 @@ canvas {
     background-position: 0% 0%, 100% 100%, 0% 100%, 100% 0%;
 }
 .border:hover{
-    -webkit-animation: border-dance 10s infinite linear;
-    -moz-animation: border-dance 10s infinite linear;
-    animation: border-dance 10s infinite linear;
+    -webkit-animation: border-dance var(--dashed-line-animation-duration) infinite linear;
+    -moz-animation: border-dance var(--dashed-line-animation-duration) infinite linear;
+    animation: border-dance var(--dashed-line-animation-duration) infinite linear;
 }
 
 @-webkit-keyframes border-dance{

@@ -1,6 +1,6 @@
-function mouseOverButton(elt) {
+async function mouseOverButton(elt) {
     scrolling = true;
-    elt.style.cssText += ";border: 1px solid black; background-color: transparent"
+    elt.style.cssText += ";border: var(--dashed-line-thickness) solid black; background-color: transparent"
 }
 
 function mouseOutButton(elt) {
@@ -11,12 +11,16 @@ function mouseOutButton(elt) {
 function mouseOverBio(elt) {
     fluctuating = true;
     elt.className = "border";
-    elt.style.cssText += ";border: none; padding: 21px;"
+    elt.style.cssText += ";border: none; padding: calc(var(--textbox-padding) + var(--dashed-line-thickness));"
 }
 
 function mouseOutBio(elt) {
     fluctuating = false;
     elt.className = "";
-    elt.style.cssText += ";border: 1px dashed black; padding: 20px;"
+    elt.style.cssText += ";border: 1px dashed black; padding: var(--textbox-padding);"
+}
+
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
 }
 
