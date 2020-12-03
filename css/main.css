@@ -3,7 +3,7 @@
     --dashed-line-animation-duration: 10s;
 
     --main-container-width: 50vw;
-    --main-container-height: 50vh;
+    --main-container-height: 60vh;
 
     --menubar-width-ratio: 0.20;
     --menubar-width: calc(var(--menubar-width-ratio) * var(--main-container-width));
@@ -14,7 +14,7 @@
     
     --textbox-padding: 20px;
     --textbox-width: calc(var(--main-container-width) - var(--menubar-width)); /* width of text box as a ratio of the width of the main container */
-    --textbox-height: = var(--main-container-height);
+    --textbox-height: var(--main-container-height);
 
     --title-font-size-default: 28px;
     --title-font-size-ideal: 2vmax; /* vmax is proportional to the longest side of the window */
@@ -38,7 +38,7 @@ canvas {
 }
 .maincontainer {
     position: absolute;
-    top: calc(100vh - var(--main-container-height));
+    top: 50vh;
     left: calc(100vw - var(--main-container-width));
     width: var(--main-container-width);
     /* min-width: 500px; */
@@ -51,7 +51,7 @@ canvas {
     margin: 0 0 0 0;
     background-color: rgb(255, 255, 255);
     width: calc(var(--textbox-width) - 2 * var(--textbox-padding) - 2 * var(--dashed-line-thickness));
-    height: var(--main-container-height);
+    height: calc(var(--textbox-height) - 2 * var(--textbox-padding) - 2 * var(--dashed-line-thickness));
     border: var(--dashed-line-thickness) dashed black;
     padding: var(--textbox-padding);
     overflow: scroll;

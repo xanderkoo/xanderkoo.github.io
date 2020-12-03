@@ -24,14 +24,14 @@ var start = 0;
 var fluxParam = 0;
 
 function updateScrollAnimation() {
-    background(255)
+    background("white")
     noFill();
     for (var l = 0, offsetY = -height/5; l < 8; l++, offsetY += height/5) {
         var offsetX = start;
         beginShape();
     
         for (var x = width; x > 0; x -= 4) {
-            stroke(0);
+            stroke(200);
             var y = (noise(offsetX) - 0.5)* Math.cos(fluxParam) * height + offsetY;
             vertex(x, y);
     
@@ -43,14 +43,14 @@ function updateScrollAnimation() {
 }
 
 function updateFluxAnimation() {
-    background(255)
+    background("white")
     noFill();
     for (var l = 0, offsetY = -height/5; l < 8; l++, offsetY += height/5) {
         var offsetX = start;
         beginShape();
     
         for (var x = width; x > 0; x -= 4) {
-            stroke(0);
+            stroke(200);
             var y = (noise(offsetX) - 0.5) * Math.cos(fluxParam) * height + offsetY;
             vertex(x, y);
     
