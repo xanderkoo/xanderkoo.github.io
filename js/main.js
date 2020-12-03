@@ -1,6 +1,6 @@
 var headshot = null;
 var headshotsDir = "./images/me/";
-var headshotNames = ["mask.png", "wg.png"];
+var headshotNames = ["button.png", "mask.png", "ohdeer.png", "srs.png", "translate.png", "wg.png",];
 
 function locationHashChanged() {
     let contentTitles = document.getElementsByClassName("title");
@@ -10,7 +10,7 @@ function locationHashChanged() {
         contentTexts[i].hidden = true;
     }
 
-    if (location.hash === "" || location.hash === "#home") {
+    if (location.hash === "" || location.hash === "#" || location.hash === "#home") {
         document.querySelector(":root").style.setProperty("--textbox-width", "calc(var(--main-container-width) - var(--menubar-width))");
         document.getElementById("home-title").hidden = false;
         document.getElementById("home-content").hidden = false;
