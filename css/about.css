@@ -1,3 +1,0 @@
-:root {
-    --textbox-width: calc(var(--main-container-width) - 2 * var(--menubar-width));
-}

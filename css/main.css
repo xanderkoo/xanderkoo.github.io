@@ -110,11 +110,13 @@ canvas {
 }
 .text {
     font-family: "Courier New", Courier, monospace;
-    font-size: var(--text-font-size-default); /* fallback */
-    font-size: max(var(--text-font-size-ideal), var(--text-font-size-default));
     text-align: left;
 }
-#title {
+.content {
+    font-size: var(--text-font-size-default); /* fallback */
+    font-size: max(var(--text-font-size-ideal), var(--text-font-size-default));
+}
+.title {
     font-size: var(--title-font-size-default); /* fallback */
     font-size: max(var(--title-font-size-ideal), var(--title-font-size-default));
 }

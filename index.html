@@ -7,19 +7,19 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <link rel="stylesheet" href="./css/main.css">
         <script src="./js/main.js"></script>
+        <script src="./js/main.p5.js"></script>
         <meta charset="utf-8"/>
     </head>
     <body>
-        <script src="./js/main.p5.js"></script>
         <div class="maincontainer">
             <div class="menubar left">
-                <div class="menubutton left" onmouseup="location.href='#'" onmouseover="mouseOverButton(this)" onmouseout="mouseOutButton(this)">
+                <div class="menubutton left" onmouseup="location.href='#home'" onmouseover="mouseOverButton(this)" onmouseout="mouseOutButton(this)">
                     <div class="menubuttontext">home</div>
                 </div>
-                <div class="menubutton left" onmouseup="location.href='./about'" onmouseover="mouseOverButton(this)" onmouseout="mouseOutButton(this)">
+                <div class="menubutton left" onmouseup="location.href='#aboutme'" onmouseover="mouseOverButton(this)" onmouseout="mouseOutButton(this)">
                     <div class="menubuttontext">about me</div>
                 </div>
-                <div class="menubutton left" onmouseup="location.href='./info/resume.pdf'" onmouseover="mouseOverButton(this)" onmouseout="mouseOutButton(this)">
+                <div class="menubutton left" onmouseup="location.href='./files/resume.pdf'" onmouseover="mouseOverButton(this)" onmouseout="mouseOutButton(this)">
                     <div class="menubuttontext">resume</div>
                 </div>
                 <div class="menubutton left" onmouseup="location.href='https:/\/www.linkedin.com/in/xanderkoo/'" onmouseover="mouseOverButton(this)" onmouseout="mouseOutButton(this)">
@@ -33,23 +33,47 @@
                 </div>
             </div>
             <div id="bio" onmouseover="mouseOverBio(this)" onmouseout="mouseOutBio(this)">
-                <div class="text" id="title">
+                <div class="title text" id="home-title" hidden>
                     hi, i'm xander koo
                 </div>
-                <p class="text">
+                <p class="content text" id="home-content" hidden>
                     My name is Xander (he/him). I'm a senior at Pomona College majoring in computer science &
                     minoring in Asian studies.
-                </br></br>
+                    </br></br>
                     I'm currently taking a leave of absence for the Fall 2020 semester,
                     and am working as a research intern at Brown HCI @ Brown University, remotely of course :)
-                </br></br>
+                    </br></br>
                     I've been working on a project called <a href="https://github.com/brownhci/WebGazer">WebGazer</a>
                     which is a webcam-based gaze prediction system that runs completely in the browser.
                     I've also recently started working on a project called <a href="https://github.com/brownhci/Portalble">Portal-ble</a>,
                     which is a mobile AR environment that allows you to manipulate virtual objects through your smartphone.
-                </br></br>
+                    </br></br>
                     (I made this website from scratch! The background was made in <a href="https://p5js.org/">p5.js</a>.)
                 </p>
+                <div class="title text" id="aboutme-title" hidden>
+                    about me
+                </div>
+                <p class="content text" id="aboutme-content" hidden>
+                    I'm broadly interested in HCI, AI/ML, and computer vision.
+                    I'd also love to explore topics related to NLP, graphics, or tech art.
+                    </br></br>
+                    Outside of CS, I'm interested in tech ethics, political activism, street/hip-hop dance,
+                    Taiwanese/Japanese culture, and any intersections thereof.
+                    </br></br>
+                    In my spare time at home, I've been practicing how to cook, sew, and play the guitar. I'm also a huge
+                    street dance nerd, so I love learning cool stuff related to breakin'/dance in general.
+                    </br></br>
+                    Email me: hi(at)xanderk.[letter o three times]
+                </p>
+            </div>
+            <div class="menubar right" hidden>
+                <div class="headshot-container">
+                    <div class="menubar right">
+                        <div class="headshot-box right" onmouseover="mouseOverButton(this)" onmouseout="mouseOutButton(this)">
+                            <img id="headshot">
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 
