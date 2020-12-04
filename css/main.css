@@ -16,10 +16,10 @@
     --textbox-width: calc(var(--main-container-width) - 1 * var(--menubar-width));
     --textbox-height: var(--main-container-height);
 
-    --title-font-size-default: 28px;
-    --title-font-size-ideal: 2vmax; /* vmax is proportional to the longest side of the window */
+    --title-font-size-default: 40px;
+    --title-font-size-ideal: 2.5vmax; /* vmax is proportional to the longest side of the window */
 
-    --text-font-size-default: 14px;
+    --text-font-size-default: 16px;
     --text-font-size-ideal: 1vmax; /* vmax is proportional to the longest side of the window */
 
     --scrolltext-cycle-duration: 60s;
