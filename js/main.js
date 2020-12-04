@@ -1,4 +1,3 @@
-var headshot = null;
 var headshotsDir = "./images/me/";
 var headshotNames = ["button.png", "mask.png", "ohdeer.png", "srs.png", "translate.png", "wg.png",];
 
@@ -14,15 +13,13 @@ function locationHashChanged() {
 
     if (location.hash === "" || location.hash === "#" || location.hash === "#home") {
         toggleTextBoxSize(true);
-        document.getElementById("home-title").hidden = false;
-        document.getElementById("home-content").hidden = false;
-        document.getElementsByClassName("menubar right")[0].hidden = true;
+        $("#home-title").removeAttr("hidden");
+        $("#home-content").removeAttr("hidden");
+        $(".menubar.right")[0].hidden = true;
     } else if (location.hash === "#aboutme") {
         toggleTextBoxSize(false);
-        document.getElementById("aboutme-title").hidden = false;
-        document.getElementById("aboutme-content").hidden = false;
-        headshot = document.getElementById("headshot");
-        headshot.src = headshotsDir + headshotNames[Math.floor(Math.random() * headshotNames.length)];
+        $("#aboutme-title").removeAttr("hidden");
+        $("#aboutme-content").removeAttr("hidden");
     }
 }
 window.onhashchange = locationHashChanged;
@@ -32,18 +29,17 @@ document.onreadystatechange = function(e)
     if (location.hash === "" || location.hash === "#" || location.hash === "#home") {
         numMenuBarsVisible = 1;
         document.querySelector(":root").style.setProperty("--textbox-width", "calc(var(--main-container-width) - 1 * var(--menubar-width))");
-        document.getElementById("home-title").hidden = false;
-        document.getElementById("home-content").hidden = false;
-        document.getElementsByClassName("menubar right")[0].hidden = true;
+        $("#home-title").removeAttr("hidden");
+        $("#home-content").removeAttr("hidden");
+        $(".menubar.right")[0].hidden = true;
     } else if (location.hash === "#aboutme") {
         document.querySelector(":root").style.setProperty("--textbox-width", "calc(var(--main-container-width) - 2 * var(--menubar-width))");
-        headshot = document.getElementById("headshot");
-        headshot.src = headshotsDir + headshotNames[Math.floor(Math.random() * headshotNames.length)];
+        $("#headshot").attr("src", headshotsDir + headshotNames[Math.floor(Math.random() * headshotNames.length)]);
         $("#headshot-box").fadeIn();
         numMenuBarsVisible = 2;
-        document.getElementById("aboutme-title").hidden = false;
-        document.getElementById("aboutme-content").hidden = false;
-        document.getElementsByClassName("menubar right")[0].hidden = false;
+        $("#aboutme-title").removeAttr("hidden");
+        $("#aboutme-content").removeAttr("hidden");
+        $(".menubar.right")[0].hidden = false;
     }
 };
 
@@ -141,11 +137,10 @@ function animateResizeTextBox(oldVal, newVal) {
             numMenuBarsVisible = targetNumMenubars;
 
             if (numMenuBarsVisible === 2) {
-                document.getElementById("headshot-box").style.display = "none";
-                document.getElementsByClassName("menubar right")[0].hidden = false;
+                $("#headshot").attr("src", headshotsDir + headshotNames[Math.floor(Math.random() * headshotNames.length)]);
+                $("#headshot-box").css("display", "none");
+                $(".menubar.right")[0].hidden = false;
                 $("#headshot-box").fadeIn();
-                headshot = document.getElementById("headshot");
-                headshot.src = headshotsDir + headshotNames[Math.floor(Math.random() * headshotNames.length)];
             }
         }
     }
