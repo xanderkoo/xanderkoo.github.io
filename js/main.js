@@ -2,7 +2,9 @@ var headshot = null;
 var headshotsDir = "./images/me/";
 var headshotNames = ["button.png", "mask.png", "ohdeer.png", "srs.png", "translate.png", "wg.png",];
 
-function locationHashChanged() {
+var numMenuBarsVisible = 1;
+
+function locationHashChanged() {    
     let contentTitles = document.getElementsByClassName("title");
     let contentTexts = document.getElementsByClassName("content");
     for (let i = 0; i < contentTitles.length; i++) {
@@ -11,28 +13,37 @@ function locationHashChanged() {
     }
 
     if (location.hash === "" || location.hash === "#" || location.hash === "#home") {
-        document.querySelector(":root").style.setProperty("--textbox-width", "calc(var(--main-container-width) - var(--menubar-width))");
+        toggleTextBoxSize(true);
         document.getElementById("home-title").hidden = false;
         document.getElementById("home-content").hidden = false;
         document.getElementsByClassName("menubar right")[0].hidden = true;
     } else if (location.hash === "#aboutme") {
-        console.log("here");
-        document.querySelector(":root").style.setProperty("--textbox-width", "calc(var(--main-container-width) - 2 * var(--menubar-width))");
+        toggleTextBoxSize(false);
         document.getElementById("aboutme-title").hidden = false;
         document.getElementById("aboutme-content").hidden = false;
-        document.getElementsByClassName("menubar right")[0].hidden = false;
         headshot = document.getElementById("headshot");
         headshot.src = headshotsDir + headshotNames[Math.floor(Math.random() * headshotNames.length)];
     }
 }
-  
 window.onhashchange = locationHashChanged;
 
 document.onreadystatechange = function(e)
 {
-    if (document.readyState === 'complete')
-    {
-        locationHashChanged();
+    if (location.hash === "" || location.hash === "#" || location.hash === "#home") {
+        numMenuBarsVisible = 1;
+        document.querySelector(":root").style.setProperty("--textbox-width", "calc(var(--main-container-width) - 1 * var(--menubar-width))");
+        document.getElementById("home-title").hidden = false;
+        document.getElementById("home-content").hidden = false;
+        document.getElementsByClassName("menubar right")[0].hidden = true;
+    } else if (location.hash === "#aboutme") {
+        document.querySelector(":root").style.setProperty("--textbox-width", "calc(var(--main-container-width) - 2 * var(--menubar-width))");
+        headshot = document.getElementById("headshot");
+        headshot.src = headshotsDir + headshotNames[Math.floor(Math.random() * headshotNames.length)];
+        $("#headshot-box").fadeIn();
+        numMenuBarsVisible = 2;
+        document.getElementById("aboutme-title").hidden = false;
+        document.getElementById("aboutme-content").hidden = false;
+        document.getElementsByClassName("menubar right")[0].hidden = false;
     }
 };
 
@@ -56,6 +67,91 @@ function mouseOutBio(elt) {
     fluctuating = false;
     elt.className = "";
     elt.style.cssText += ";border: 1px dashed black; padding: var(--textbox-padding);"
+}
+
+var lastTime;
+var variableName = "--textbox-width";
+var variableUnit = "vw";
+var targetNumMenubars;
+var currentValue, targetValue;
+
+/**
+ * 
+ * @param {Number} val false for small, true for normal size
+ */
+function toggleTextBoxSize(val) {
+
+    targetNumMenubars = val ? 1 : 2;
+
+    let style = getComputedStyle(document.body);
+
+    let mcw = parseFloat(style.getPropertyValue("--main-container-width"));
+    let mbw = parseFloat(style.getPropertyValue("--menubar-width-ratio")) * mcw;
+
+    let oldSize = mcw - numMenuBarsVisible * mbw;
+    let newSize = mcw - (val ? 1 : 2) * mbw;
+
+    animateResizeTextBox(oldSize, newSize)
+}
+
+/**
+ * Called to resize a certain variable value
+ * @param {Number} newVal new value to assign the variable, no unit
+ */
+function animateResizeTextBox(oldVal, newVal) {
+
+    lastTime = 0;
+    currentValue = new Number(oldVal);
+    targetValue = new Number(newVal);
+
+    /**
+     * Callback for requestAnimationFrame
+     * 
+     * @param {*} ms elapsed time in ms, similar to performance.now(), passed in by requestAnimationFrame
+     */
+    function resizeTextBoxCallback(ms) {
+        let elapsed;
+        
+        // If we are beginning a new path to a dest, then we want to start the speed
+        // (and therefore the elapsed time) out at 0
+        if (lastTime == 0) {
+            elapsed = 0;
+        } else {
+            elapsed = ms - lastTime;
+        }
+        lastTime = ms;
+
+        // Calculate velocity based on distance + how long has passed since last tick
+        let rate = (targetValue - currentValue) / 0.25;
+        let elapsedSeconds = elapsed / 1000;
+
+        // Adjust variable value based on time elapsed
+        currentValue += (rate * elapsedSeconds);
+
+        // Update target
+        document.querySelector(":root").style.setProperty(variableName, `${currentValue}${variableUnit}`);
+
+        // Move until we are within 0.01 of the target value
+        if (Math.abs(currentValue - targetValue) > 0.05) {
+            window.requestAnimationFrame(resizeTextBoxCallback);
+        } else {
+            // Force variable assignment
+            currentValue = Math.round(currentValue);
+            document.querySelector(":root").style.setProperty(variableName, `${currentValue}${variableUnit}`);
+            numMenuBarsVisible = targetNumMenubars;
+
+            if (numMenuBarsVisible === 2) {
+                document.getElementById("headshot-box").style.display = "none";
+                document.getElementsByClassName("menubar right")[0].hidden = false;
+                $("#headshot-box").fadeIn();
+                headshot = document.getElementById("headshot");
+                headshot.src = headshotsDir + headshotNames[Math.floor(Math.random() * headshotNames.length)];
+            }
+        }
+    }
+
+    // Start animation
+    window.requestAnimationFrame(resizeTextBoxCallback);
 }
 
 function sleep(ms) {

@@ -13,7 +13,7 @@
     --menubutton-height: calc(var(--menubutton-height-ratio) * var(--menubar-height));
     
     --textbox-padding: 20px;
-    --textbox-width: calc(var(--main-container-width) - var(--menubar-width)); /* width of text box as a ratio of the width of the main container */
+    --textbox-width: calc(var(--main-container-width) - 1 * var(--menubar-width));
     --textbox-height: var(--main-container-height);
 
     --title-font-size-default: 28px;
@@ -39,13 +39,13 @@ canvas {
 .maincontainer {
     position: absolute;
     top: 50vh;
-    left: calc(100vw - var(--main-container-width));
+    left: 50vw;
     width: var(--main-container-width);
     /* min-width: 500px; */
     height: var(--main-container-height);
     margin: calc(var(--main-container-height) / -2) calc(var(--main-container-width) / -2);
 }
-#bio {
+#textbox {
     position: absolute;
     left: calc(var(--menubar-width));
     margin: 0 0 0 0;
@@ -69,13 +69,14 @@ canvas {
     right: 0;
     float: right;
 }
-.headshot-box {
+#headshot-box {
     position: relative;
     margin: 0 0 var(--menuitem-padding) 0;
     background-color: rgb(255, 255, 255);
     width: calc(var(--menubar-width) - var(--menuitem-padding) - 2 * var(--dashed-line-thickness));
     height: calc(var(--menubar-width) - var(--menuitem-padding) - 2 * var(--dashed-line-thickness));
     border: var(--dashed-line-thickness) dashed black;
+    display: none;
     overflow: auto;
 }
 #headshot {
