@@ -25,20 +25,32 @@ function locationHashChanged() {
 window.onhashchange = locationHashChanged;
 
 document.onreadystatechange = function(e) {
-    if (location.hash === "" || location.hash === "#" || location.hash === "#home") {
-        numMenuBarsVisible = 1;
-        document.querySelector(":root").style.setProperty("--textbox-width", "calc(var(--main-container-width) - 1 * var(--menubar-width))");
-        $("#home-title").removeAttr("hidden");
-        $("#home-content").removeAttr("hidden");
-        $(".menubar.right")[0].hidden = true;
-    } else if (location.hash === "#aboutme") {
-        document.querySelector(":root").style.setProperty("--textbox-width", "calc(var(--main-container-width) - 2 * var(--menubar-width))");
-        let imgSrc = headshotsDir + headshotNames[Math.floor(Math.random() * headshotNames.length)];
-        loadImageElement(imgSrc, $("#headshot").get(0));
-        numMenuBarsVisible = 2;
-        $("#aboutme-title").removeAttr("hidden");
-        $("#aboutme-content").removeAttr("hidden");
-        $(".menubar.right")[0].hidden = false;
+    switch (document.readyState) {
+        case "loading":
+            break;
+        case "interactive":
+            switch (location.hash) {
+                case "":
+                case "#":
+                case "#home":
+                    numMenuBarsVisible = 1;
+                    document.querySelector(":root").style.setProperty("--textbox-width", "calc(var(--main-container-width) - 1 * var(--menubar-width))");
+                    $("#home-title").removeAttr("hidden");
+                    $("#home-content").removeAttr("hidden");
+                    $(".menubar.right")[0].hidden = true;
+                    break;
+                case "#aboutme":
+                    document.querySelector(":root").style.setProperty("--textbox-width", "calc(var(--main-container-width) - 2 * var(--menubar-width))");
+                    let imgSrc = headshotsDir + headshotNames[Math.floor(Math.random() * headshotNames.length)];
+                    loadImageElement(imgSrc, $("#headshot").get(0));
+                    numMenuBarsVisible = 2;
+                    $("#aboutme-title").removeAttr("hidden");
+                    $("#aboutme-content").removeAttr("hidden");
+                    $(".menubar.right")[0].hidden = false;
+            }
+            break;
+        case "complete":
+            break;
     }
 };
 
@@ -155,7 +167,8 @@ function animateResizeTextBox(oldVal, newVal) {
             numMenuBarsVisible = targetNumMenubars;
 
             if (numMenuBarsVisible === 2) {
-                $("#headshot").attr("src", headshotsDir + headshotNames[Math.floor(Math.random() * headshotNames.length)]);
+                let imgSrc = headshotsDir + headshotNames[Math.floor(Math.random() * headshotNames.length)];    
+                loadImageElement(imgSrc, $("#headshot").get(0));
                 $("#headshot-box").css("display", "none");
                 $(".menubar.right")[0].hidden = false;
                 $("#headshot-box").fadeIn();
