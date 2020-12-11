@@ -24,8 +24,7 @@ function locationHashChanged() {
 }
 window.onhashchange = locationHashChanged;
 
-document.onreadystatechange = function(e)
-{
+document.onreadystatechange = function(e) {
     if (location.hash === "" || location.hash === "#" || location.hash === "#home") {
         numMenuBarsVisible = 1;
         document.querySelector(":root").style.setProperty("--textbox-width", "calc(var(--main-container-width) - 1 * var(--menubar-width))");
@@ -34,14 +33,33 @@ document.onreadystatechange = function(e)
         $(".menubar.right")[0].hidden = true;
     } else if (location.hash === "#aboutme") {
         document.querySelector(":root").style.setProperty("--textbox-width", "calc(var(--main-container-width) - 2 * var(--menubar-width))");
-        $("#headshot").attr("src", headshotsDir + headshotNames[Math.floor(Math.random() * headshotNames.length)]);
-        $("#headshot-box").fadeIn();
+        let imgSrc = headshotsDir + headshotNames[Math.floor(Math.random() * headshotNames.length)];
+        loadImageElement(imgSrc, $("#headshot").get(0));
         numMenuBarsVisible = 2;
         $("#aboutme-title").removeAttr("hidden");
         $("#aboutme-content").removeAttr("hidden");
         $(".menubar.right")[0].hidden = false;
     }
 };
+
+async function loadImageElement(imgSrc, imageElement) {
+    // We want to wait for image to finish loading, so we load image inside a promise
+    const imageLoadPromise = new Promise(resolve => {
+        // Called once image is loaded into element
+        imageElement.onload = function() {
+            // Fade in the headshot
+            $("#headshot-box").fadeIn();
+            // Resolve promise
+            resolve();
+        };
+
+        // Set the image source, triggers .onload
+        $("#headshot").attr("src", imgSrc);
+    });
+
+    // Wait for image to finish initializing
+    await imageLoadPromise;
+}
 
 async function mouseOverButton(elt) {
     scrolling = true;
