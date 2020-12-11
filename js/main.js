@@ -58,21 +58,16 @@ document.onreadystatechange = function(e) {
 };
 
 async function loadImageElement(imgSrc, imageElement) {
-    console.log(performance.now());
-
     // We want to wait for image to finish loading, so we load image inside a promise
     const imageLoadPromise = new Promise(resolve => {
         // Called once image is loaded into element
         imageElement.onload = function() {
-            console.log(performance.now());
             // Resolve promise
             resolve();
         };
-
         // Set the image source, triggers .onload
         $("#headshot").attr("src", imgSrc);
     });
-
     // Wait for image to finish initializing
     await imageLoadPromise;
 }
@@ -101,7 +96,6 @@ function mouseOutBio(elt) {
 
 var lastTime;
 var variableName = "--textbox-width";
-var variableUnit = "vw";
 var targetNumMenubars;
 var currentValue, targetValue;
 
@@ -115,17 +109,18 @@ function toggleTextBoxSize(val) {
 
     let style = getComputedStyle(document.body);
 
-    let mcw = parseFloat(style.getPropertyValue("--main-container-width"));
-    let mbw = parseFloat(style.getPropertyValue("--menubar-width-ratio")) * mcw;
+    let mainContainerWidth = $(".maincontainer").width();
+    let menubarWidth = parseFloat(style.getPropertyValue("--menubar-width-ratio")) * mainContainerWidth;
 
-    let oldSize = mcw - numMenuBarsVisible * mbw;
-    let newSize = mcw - (val ? 1 : 2) * mbw;
+    let oldSize = $("#textbox").width();
+    let newSize = mainContainerWidth - (val ? 1 : 2) * menubarWidth;
 
     animateResizeTextBox(oldSize, newSize)
 }
 
 /**
  * Called to resize a certain variable value
+ * @param {Number} oldVal new value to assign the variable, no unit
  * @param {Number} newVal new value to assign the variable, no unit
  */
 function animateResizeTextBox(oldVal, newVal) {
@@ -162,23 +157,30 @@ function animateResizeTextBox(oldVal, newVal) {
         currentValue += (rate * elapsedSeconds);
 
         // Update target
-        document.querySelector(":root").style.setProperty(variableName, `${currentValue}${variableUnit}`);
+        document.querySelector(":root").style.setProperty(variableName, `${currentValue}px`);
 
-        // Move until we are within 0.01 of the target value
-        if (Math.abs(currentValue - targetValue) > 0.05) {
+        // Move until we are within 0.5 of the target value
+        if (Math.abs(currentValue - targetValue) > 0.5) {
             window.requestAnimationFrame(resizeTextBoxCallback);
         } else {
             // Force variable assignment
             currentValue = Math.round(currentValue);
-            document.querySelector(":root").style.setProperty(variableName, `${currentValue}${variableUnit}`);
+            
             numMenuBarsVisible = targetNumMenubars;
 
+            let style = getComputedStyle(document.body);
+            let mainContainerWidth = parseFloat(style.getPropertyValue("--main-container-width"));
+            let menubarWidth = parseFloat(style.getPropertyValue("--menubar-width-ratio")) * mainContainerWidth;
+
             if (numMenuBarsVisible === 2) {
+                document.querySelector(":root").style.setProperty(variableName, `${mainContainerWidth - 2 * menubarWidth}vw`);
                 $("#headshot-box").css("display", "none");
                 $(".menubar.right")[0].hidden = false;
 
                 // Fade in the headshot if src is loaded
                 promise.then(() => $("#headshot-box").fadeIn());
+            } else if (numMenuBarsVisible === 1) {
+                document.querySelector(":root").style.setProperty(variableName, `${mainContainerWidth - menubarWidth}vw`);
             }
         }
     }
