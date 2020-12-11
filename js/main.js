@@ -42,11 +42,14 @@ document.onreadystatechange = function(e) {
                 case "#aboutme":
                     document.querySelector(":root").style.setProperty("--textbox-width", "calc(var(--main-container-width) - 2 * var(--menubar-width))");
                     let imgSrc = headshotsDir + headshotNames[Math.floor(Math.random() * headshotNames.length)];
-                    loadImageElement(imgSrc, $("#headshot").get(0));
+                    let promise = loadImageElement(imgSrc, $("#headshot").get(0));
                     numMenuBarsVisible = 2;
                     $("#aboutme-title").removeAttr("hidden");
                     $("#aboutme-content").removeAttr("hidden");
                     $(".menubar.right")[0].hidden = false;
+
+                    // Fade in the headshot if src is loaded
+                    promise.then(() => $("#headshot-box").fadeIn());
             }
             break;
         case "complete":
@@ -55,12 +58,13 @@ document.onreadystatechange = function(e) {
 };
 
 async function loadImageElement(imgSrc, imageElement) {
+    console.log(performance.now());
+
     // We want to wait for image to finish loading, so we load image inside a promise
     const imageLoadPromise = new Promise(resolve => {
         // Called once image is loaded into element
         imageElement.onload = function() {
-            // Fade in the headshot
-            $("#headshot-box").fadeIn();
+            console.log(performance.now());
             // Resolve promise
             resolve();
         };
@@ -126,6 +130,9 @@ function toggleTextBoxSize(val) {
  */
 function animateResizeTextBox(oldVal, newVal) {
 
+    let imgSrc = headshotsDir + headshotNames[Math.floor(Math.random() * headshotNames.length)];    
+    let promise = loadImageElement(imgSrc, $("#headshot").get(0));
+
     lastTime = 0;
     currentValue = new Number(oldVal);
     targetValue = new Number(newVal);
@@ -167,11 +174,11 @@ function animateResizeTextBox(oldVal, newVal) {
             numMenuBarsVisible = targetNumMenubars;
 
             if (numMenuBarsVisible === 2) {
-                let imgSrc = headshotsDir + headshotNames[Math.floor(Math.random() * headshotNames.length)];    
-                loadImageElement(imgSrc, $("#headshot").get(0));
                 $("#headshot-box").css("display", "none");
                 $(".menubar.right")[0].hidden = false;
-                $("#headshot-box").fadeIn();
+
+                // Fade in the headshot if src is loaded
+                promise.then(() => $("#headshot-box").fadeIn());
             }
         }
     }
