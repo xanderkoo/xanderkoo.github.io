@@ -74,12 +74,12 @@ async function loadImageElement(imgSrc, imageElement) {
 
 async function mouseOverButton(elt) {
     scrolling = true;
-    elt.style.cssText += ";border: var(--dashed-line-thickness) solid black; background-color: transparent"
+    elt.style.cssText += ";border: var(--dashed-line-thickness) solid white; background-color: transparent"
 }
 
 function mouseOutButton(elt) {
     scrolling = false;
-    elt.style.cssText += ";border: 1px dashed black; background-color: white"
+    elt.style.cssText += ";border: 1px dashed white; background-color: rgb(32, 32, 32)"
 }
 
 function mouseOverBio(elt) {
@@ -91,7 +91,7 @@ function mouseOverBio(elt) {
 function mouseOutBio(elt) {
     fluctuating = false;
     elt.className = "";
-    elt.style.cssText += ";border: 1px dashed black; padding: var(--textbox-padding);"
+    elt.style.cssText += ";border: 1px dashed white; padding: var(--textbox-padding);"
 }
 
 var lastTime;
@@ -112,7 +112,8 @@ function toggleTextBoxSize(val) {
     let mainContainerWidth = $(".maincontainer").width();
     let menubarWidth = parseFloat(style.getPropertyValue("--menubar-width-ratio")) * mainContainerWidth;
 
-    let oldSize = $("#textbox").width();
+    let oldSize = $("#textbox").outerWidth();
+    console.log(oldSize);
     let newSize = mainContainerWidth - (val ? 1 : 2) * menubarWidth;
 
     animateResizeTextBox(oldSize, newSize)
