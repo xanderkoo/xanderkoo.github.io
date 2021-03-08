@@ -13,7 +13,7 @@ var spinSpeed = 0.001;
 var tilt = 2.3;
 var longSide = 0;
 
-function setup () {
+function setup() {
     createCanvas(windowWidth, windowHeight, WEBGL);
     longSide = Math.max(windowWidth, windowHeight);
     cols = Math.round(longSide / scl);
@@ -50,12 +50,15 @@ function draw() {
     // scale(1)
     rotateX(PI / tilt);
     rotateZ(PI * spin);
+    
 
     // center the thing
     translate(-longSide / 2, -longSide / 2);
 
-    spin = spin + spinSpeed; // can't really use % here to avoid rounding errors i think
-    
+    if (!dragging) {
+        spin = spin + spinSpeed; // can't really use % here to avoid rounding errors i think
+    }
+
     for (let i = 0; i < rows - 1; i++) {
         beginShape(TRIANGLE_STRIP);
         for (let j = 0; j < cols; j++) {
@@ -72,4 +75,25 @@ function windowResized() {
     cols = Math.round(longSide / scl);
     rows = cols;
     initializeTerrain();
+}
+
+var dragging = false;
+var dragStartMouseX = -1;
+var dragStartSpin = -1;
+var dragRate = 0.001;
+
+function mouseDragged() {
+    if (!dragging) {
+        dragging = true;
+        dragStartMouseX = mouseX;
+        dragStartSpin = spin;
+    }
+    let delta = dragStartMouseX - mouseX;
+
+    spin = dragStartSpin + delta * dragRate;
+}
+
+function mouseReleased() {
+    dragging = false;
+    dragStartMouseX = -1;
 }
