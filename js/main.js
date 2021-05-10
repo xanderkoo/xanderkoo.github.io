@@ -49,7 +49,7 @@ document.onreadystatechange = function(e) {
                     // $(".menubar.right")[0].hidden = false;
 
                     // Fade in the headshot if src is loaded
-                    promise.then(() => $("#headshot-box").fadeIn());
+                    promise.then(() => $("#headshot-box").fadeIn(200));
             }
             break;
         case "complete":
@@ -150,7 +150,7 @@ function animateResizeTextBox(oldVal, newVal) {
         lastTime = ms;
 
         // Calculate velocity based on distance + how long has passed since last tick
-        let rate = (targetValue - currentValue) / 0.25;
+        let rate = (targetValue - currentValue) / 0.15;
         let elapsedSeconds = elapsed / 1000;
 
         // Adjust variable value based on time elapsed
@@ -160,7 +160,7 @@ function animateResizeTextBox(oldVal, newVal) {
         document.querySelector(":root").style.setProperty(variableName, `${currentValue}px`);
 
         // Move until we are within 0.5 of the target value
-        if (Math.abs(currentValue - targetValue) > 0.5) {
+        if (Math.abs(currentValue - targetValue) > .75) {
             window.requestAnimationFrame(resizeTextBoxCallback);
         } else {
             // Force variable assignment
@@ -176,7 +176,7 @@ function animateResizeTextBox(oldVal, newVal) {
                 document.querySelector(":root").style.setProperty(variableName, `${mainContainerWidth - 2 * menubarWidth}vw`);
                 $("#headshot-box").stop().hide();
                 // Fade in the headshot if src is loaded
-                promise.then(() => { $("#headshot-box").fadeIn() });
+                promise.then(() => { $("#headshot-box").fadeIn(200) });
             } else if (numMenuBarsVisible === 1) {
                 document.querySelector(":root").style.setProperty(variableName, `${mainContainerWidth - menubarWidth}vw`);
             }

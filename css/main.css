@@ -3,8 +3,8 @@
     --dashed-line-thickness: 1px;
     --dashed-line-animation-duration: 10s;
 
-    --main-container-width: 50vw;
-    --main-container-height: 60vh;
+    --main-container-width: 70vw;
+    --main-container-height: 80vh;
 
     --menubar-width-ratio: 0.20;
     --menubar-width: calc(var(--menubar-width-ratio) * var(--main-container-width));
@@ -112,14 +112,14 @@
         --textbox-width: calc(var(--main-container-width) - 1 * var(--menubar-width));
         --textbox-height: var(--main-container-height);
     
-        --title-font-size-default: 48px;
-        --title-font-size-ideal: 4.7vmax; /* vmax is proportional to the longest side of the window */
+        --title-font-size-default: 32px;
+        --title-font-size-ideal: 4vmax; /* vmax is proportional to the longest side of the window */
     
-        --text-font-size-default: 24px;
+        --text-font-size-default: 18px;
         --text-font-size-ideal: 1vmax; /* vmax is proportional to the longest side of the window */
     
         --scrolltext-cycle-duration: 60s;
-        --scrolltext-font-size: 40px;
+        --scrolltext-font-size: 32px;
         --scrolltext-padding: 12px;
     }
 }

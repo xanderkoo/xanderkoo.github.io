@@ -6,10 +6,10 @@ var cols, rows;
 var scl = 69;
 var terrain;
 var waves = 0;
-var wavesSpeed = 0.01;
+var wavesSpeed = 0.005;
 var jaggedness = 0.1;
 var spin = 0;
-var spinSpeed = 0.001;
+var spinSpeed = 0.0005;
 var tilt = 2.3;
 var longSide = 0;
 
