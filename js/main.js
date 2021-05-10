@@ -15,7 +15,7 @@ function locationHashChanged() {
         toggleTextBoxSize(true);
         $("#home-title").removeAttr("hidden");
         $("#home-content").removeAttr("hidden");
-        $(".menubar.right")[0].hidden = true;
+        $("#headshot-box").stop().hide();
     } else if (location.hash === "#aboutme") {
         toggleTextBoxSize(false);
         $("#aboutme-title").removeAttr("hidden");
@@ -37,7 +37,7 @@ document.onreadystatechange = function(e) {
                     document.querySelector(":root").style.setProperty("--textbox-width", "calc(var(--main-container-width) - 1 * var(--menubar-width))");
                     $("#home-title").removeAttr("hidden");
                     $("#home-content").removeAttr("hidden");
-                    $(".menubar.right")[0].hidden = true;
+                    $("#headshot-box").stop().hide();
                     break;
                 case "#aboutme":
                     document.querySelector(":root").style.setProperty("--textbox-width", "calc(var(--main-container-width) - 2 * var(--menubar-width))");
@@ -46,7 +46,7 @@ document.onreadystatechange = function(e) {
                     numMenuBarsVisible = 2;
                     $("#aboutme-title").removeAttr("hidden");
                     $("#aboutme-content").removeAttr("hidden");
-                    $(".menubar.right")[0].hidden = false;
+                    // $(".menubar.right")[0].hidden = false;
 
                     // Fade in the headshot if src is loaded
                     promise.then(() => $("#headshot-box").fadeIn());
@@ -113,7 +113,6 @@ function toggleTextBoxSize(val) {
     let menubarWidth = parseFloat(style.getPropertyValue("--menubar-width-ratio")) * mainContainerWidth;
 
     let oldSize = $("#textbox").outerWidth();
-    console.log(oldSize);
     let newSize = mainContainerWidth - (val ? 1 : 2) * menubarWidth;
 
     animateResizeTextBox(oldSize, newSize)
@@ -175,14 +174,13 @@ function animateResizeTextBox(oldVal, newVal) {
 
             if (numMenuBarsVisible === 2) {
                 document.querySelector(":root").style.setProperty(variableName, `${mainContainerWidth - 2 * menubarWidth}vw`);
-                $("#headshot-box").css("display", "none");
-                $(".menubar.right")[0].hidden = false;
-
+                $("#headshot-box").stop().hide();
                 // Fade in the headshot if src is loaded
-                promise.then(() => $("#headshot-box").fadeIn());
+                promise.then(() => { $("#headshot-box").fadeIn() });
             } else if (numMenuBarsVisible === 1) {
                 document.querySelector(":root").style.setProperty(variableName, `${mainContainerWidth - menubarWidth}vw`);
             }
+            document.querySelector(":root").style.setProperty("--textbox-width", `calc(var(--main-container-width) - ${numMenuBarsVisible} * var(--menubar-width))`);
         }
     }
 

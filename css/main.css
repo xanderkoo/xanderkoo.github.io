@@ -1,3 +1,4 @@
+/* default for desktop and tablet in landscape mode */
 :root {
     --dashed-line-thickness: 1px;
     --dashed-line-animation-duration: 10s;
@@ -26,6 +27,103 @@
     --scrolltext-font-size: 24px;
     --scrolltext-padding: 12px;
 }
+
+/* mobile portrait mode */
+@media screen and (max-width: 600px) and (orientation: portrait) {
+    :root {
+        --dashed-line-thickness: 1px;
+        --dashed-line-animation-duration: 10s;
+    
+        --main-container-width: 80vw;
+        --main-container-height: 80vh;
+    
+        --menubar-width-ratio: 0.20;
+        --menubar-width: calc(var(--menubar-width-ratio) * var(--main-container-width));
+        --menubar-height: var(--main-container-height);
+        --menuitem-padding: 12px;
+        --menubutton-height-ratio: 0.10; /* height of menu button as a ratio to the height of the menubar */
+        --menubutton-height: calc(var(--menubutton-height-ratio) * var(--menubar-height));
+        
+        --textbox-padding: 20px;
+        --textbox-width: calc(var(--main-container-width) - 1 * var(--menubar-width));
+        --textbox-height: var(--main-container-height);
+    
+        --title-font-size-default: 24px;
+        --title-font-size-ideal: 3.2vmax; /* vmax is proportional to the longest side of the window */
+    
+        --text-font-size-default: 14px;
+        --text-font-size-ideal: 1vmax; /* vmax is proportional to the longest side of the window */
+    
+        --scrolltext-cycle-duration: 60s;
+        --scrolltext-font-size: 24px;
+        --scrolltext-padding: 12px;
+    }
+}
+
+/* mobile landscape mode */
+@media screen and (max-height: 600px) and (orientation: landscape) {
+    :root {
+        --dashed-line-thickness: 1px;
+        --dashed-line-animation-duration: 10s;
+    
+        --main-container-width: 80vw;
+        --main-container-height: 80vh;
+    
+        --menubar-width-ratio: 0.20;
+        --menubar-width: calc(var(--menubar-width-ratio) * var(--main-container-width));
+        --menubar-height: var(--main-container-height);
+        --menuitem-padding: 12px;
+        --menubutton-height-ratio: 0.10; /* height of menu button as a ratio to the height of the menubar */
+        --menubutton-height: calc(var(--menubutton-height-ratio) * var(--menubar-height));
+        
+        --textbox-padding: 20px;
+        --textbox-width: calc(var(--main-container-width) - 1 * var(--menubar-width));
+        --textbox-height: var(--main-container-height);
+    
+        --title-font-size-default: 24px;
+        --title-font-size-ideal: 3.2vmax; /* vmax is proportional to the longest side of the window */
+    
+        --text-font-size-default: 14px;
+        --text-font-size-ideal: 1vmax; /* vmax is proportional to the longest side of the window */
+    
+        --scrolltext-cycle-duration: 60s;
+        --scrolltext-font-size: 20px;
+        --scrolltext-padding: 12px;
+    }
+}
+
+/* tablet portrait mode */
+@media screen and (min-width: 600px) and (orientation: portrait) {
+    :root {
+        --dashed-line-thickness: 1px;
+        --dashed-line-animation-duration: 10s;
+    
+        --main-container-width: 70vw;
+        --main-container-height: 80vh;
+    
+        --menubar-width-ratio: 0.20;
+        --menubar-width: calc(var(--menubar-width-ratio) * var(--main-container-width));
+        --menubar-height: var(--main-container-height);
+        --menuitem-padding: 12px;
+        --menubutton-height-ratio: 0.10; /* height of menu button as a ratio to the height of the menubar */
+        --menubutton-height: calc(var(--menubutton-height-ratio) * var(--menubar-height));
+        
+        --textbox-padding: 20px;
+        --textbox-width: calc(var(--main-container-width) - 1 * var(--menubar-width));
+        --textbox-height: var(--main-container-height);
+    
+        --title-font-size-default: 48px;
+        --title-font-size-ideal: 4.7vmax; /* vmax is proportional to the longest side of the window */
+    
+        --text-font-size-default: 24px;
+        --text-font-size-ideal: 1vmax; /* vmax is proportional to the longest side of the window */
+    
+        --scrolltext-cycle-duration: 60s;
+        --scrolltext-font-size: 40px;
+        --scrolltext-padding: 12px;
+    }
+}
+
 
 body {
     margin: 0;
@@ -88,10 +186,7 @@ a:active {
     left: 0;
     float: left;
 }
-.right {
-    right: 0;
-    float: right;
-}
+
 #headshot-box {
     position: relative;
     margin: 0 0 var(--menuitem-padding) 0;
@@ -100,21 +195,27 @@ a:active {
     height: calc(var(--menubar-width) - var(--menuitem-padding) - 2 * var(--dashed-line-thickness));
     border: var(--dashed-line-thickness) dashed white;
     display: none;
-    overflow: auto;
+    overflow: hidden;
+    right: 0;
+    float: right;
 }
+
 #headshot {
     max-width: 100%;
     max-height: 100%;
 }
 .menubutton {
+    /* box-sizing: border-box; */
     position: relative;
     margin: 0 0 var(--menuitem-padding) 0;
     background-color: rgb(32, 32, 32);
-    width: calc(var(--menubar-width) - var(--menuitem-padding) - 2 * var(--dashed-line-thickness));
-    height: calc(var(--menubutton-height) - 2 * var(--dashed-line-thickness));
+    width: calc(var(--menubar-width) - var(--menuitem-padding));
+    height: calc(var(--menubutton-height));
     border: var(--dashed-line-thickness) dashed white;
+    /* padding: 5%; */
     cursor: pointer;
     overflow: auto;
+    word-wrap: break-word;
 }
 .menubuttontext {
     color: white;
@@ -129,9 +230,9 @@ a:active {
     -ms-user-select: none; /* IE10+/Edge */
     user-select: none; /* Standard */
     
-    font-size: 14px; /* fallback */
+    font-size: var(--text-font-size-default); /* fallback */
     /* font-size: max(1vmax, 14px); */
-    font-size: 1vmax;
+    font-size: max(var(--text-font-size-default), var(--text-font-size-ideal));
 }
 .text {
     font-family: "Courier New", Courier, monospace;
