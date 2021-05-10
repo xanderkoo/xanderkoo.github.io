@@ -8,7 +8,6 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <link rel="stylesheet" href="./css/main.css">
         <script src="./js/main.js"></script>
-        <script src="./js/wavy.p5.js"></script>
         <meta charset="utf-8"/>
     </head>
     <body>
@@ -33,40 +32,42 @@
                     <div class="menubuttontext">twitter</div>
                 </div>
             </div>
-            <div id="textbox" onmouseover="mouseOverBio(this)" onmouseout="mouseOutBio(this)">
-                <div class="title text" id="home-title" hidden>
-                    hi, i'm xander koo
+            <div id="maincontainer-content">
+                <div id="textbox" onmouseover="mouseOverBio(this)" onmouseout="mouseOutBio(this)">
+                    <div class="title text" id="home-title" hidden>
+                        hi, i'm xander
+                    </div>
+                    <p class="content text" id="home-content" hidden>
+                        My name is Xander Koo (he/they). I'm a senior(-ish) at Pomona College graduating Dec 2021,
+                        with a major in computer science & a minor in Asian studies.
+                        </br></br>
+                        At Pomona, I work as an RA on a project called <a href="https://github.com/brownhci/WebGazer">WebGazer</a>,
+                        a browser-based webcam gaze prediction system, with Prof. Alexandra Papoutsaki.
+                        </br></br>
+                        Last Fall, I was on a semester-long leave of absence, working as a remote RA at the HCI Lab @ Brown University.
+                        I worked on integrating MediaPipe hand tracking in a project called <a href="https://github.com/brownhci/Portalble">Portal-ble</a>.
+                        </br></br>
+                        (I made this website from scratch! The background was made in <a href="https://p5js.org/">p5.js</a>.)
+                    </p>
+                    <div class="title text" id="aboutme-title" hidden>
+                        about me
+                    </div>
+                    <p class="content text" id="aboutme-content" hidden>
+                        I'm broadly interested in HCI, AI/ML, and computer vision.
+                        I'd also love to explore topics related to NLP, graphics, or tech art.
+                        </br></br>
+                        Outside of CS, I'm interested in tech ethics, activism, street/hip-hop dance,
+                        Taiwanese & Japanese culture, and any intersections thereof.
+                        </br></br>
+                        In my spare time at home, I've been practicing how to cook and play the guitar. I'm also a huge
+                        street dance nerd, so I love learning about cool stuff related to breakin' and street dance in general.
+                        </br></br>
+                        Email me: hi(at)xanderk.[letter o three times]
+                    </p>
                 </div>
-                <p class="content text" id="home-content" hidden>
-                    My name is Xander (he/they). I'm a senior(-ish) at Pomona College graduating Dec 2021,
-                    with a major in computer science & a minor in Asian studies.
-                    </br></br>
-                    At Pomona, I work as an RA on a project called <a href="https://github.com/brownhci/WebGazer">WebGazer</a>,
-                    a browser-based webcam gaze prediction system, with Prof. Alexandra Papoutsaki.
-                    </br></br>
-                    Last Fall, I was on a semester-long leave of absence, working as a remote RA at the HCI Lab @ Brown University.
-                    I worked on integrating MediaPipe hand tracking in a project called <a href="https://github.com/brownhci/Portalble">Portal-ble</a>.
-                    </br></br>
-                    (I made this website from scratch! The background was made in <a href="https://p5js.org/">p5.js</a>.)
-                </p>
-                <div class="title text" id="aboutme-title" hidden>
-                    about me
+                <div id="headshot-box" class="right" onmouseover="mouseOverButton(this)" onmouseout="mouseOutButton(this)">
+                    <img id="headshot">
                 </div>
-                <p class="content text" id="aboutme-content" hidden>
-                    I'm broadly interested in HCI, AI/ML, and computer vision.
-                    I'd also love to explore topics related to NLP, graphics, or tech art.
-                    </br></br>
-                    Outside of CS, I'm interested in tech ethics, activism, street/hip-hop dance,
-                    Taiwanese & Japanese culture, and any intersections thereof.
-                    </br></br>
-                    In my spare time at home, I've been practicing how to cook and play the guitar. I'm also a huge
-                    street dance nerd, so I love learning about cool stuff related to breakin' and street dance in general.
-                    </br></br>
-                    Email me: hi(at)xanderk.[letter o three times]
-                </p>
-            </div>
-            <div id="headshot-box" class="right" onmouseover="mouseOverButton(this)" onmouseout="mouseOutButton(this)">
-                <img id="headshot">
             </div>
         </div>
 
@@ -81,5 +82,7 @@
                 雞逐鳳同飛 髙林整羽儀 棹舟須濟岸 寳貨滿船歸
             </div>
         </div>
+
+        <script src="./js/wavy.p5.js"></script>
     </body>
 </html>
