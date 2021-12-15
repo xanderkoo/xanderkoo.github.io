@@ -23,7 +23,7 @@
     --text-font-size-default: 16px;
     --text-font-size-ideal: 1vmax; /* vmax is proportional to the longest side of the window */
 
-    --scrolltext-cycle-duration: 60s;
+    --scrolltext-cycle-duration: 300s;
     --scrolltext-font-size: 24px;
     --scrolltext-padding: 12px;
 }
