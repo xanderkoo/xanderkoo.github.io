@@ -1,5 +1,5 @@
 var headshotsDir = "./images/me/";
-var headshotNames = ["button.png", "mask.png", "ohdeer.png", "srs.png", "translate.png", "wg.png",];
+var headshotNames = ["jtree.png", "ohdeer.png", "gradheadshot.png"];
 
 var numMenuBarsVisible = 1;
 
