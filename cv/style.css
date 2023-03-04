@@ -9,7 +9,7 @@
     --highlight-color: #db9edc;
     --highlight-text-color: #FFFFFF;
 
-    --h1-font-size: 48px;
+    --h1-font-size: 44px;
     --h1-line-height: 36px;
     --h1-margin-top: 10px;
     --h1-margin-bottom: 20px;
@@ -33,7 +33,7 @@
     --dd-margin-bottom: 8px;
     --dd-font-size: 14px;
     
-    --dt-font-size: 10px;
+    --dt-font-size: 12px;
     --dt-margin-top: 2px;
 
     --code-font-size: 12px;
@@ -89,7 +89,7 @@ h3 {
     margin-top: var(--h3-margin-top);
     margin-bottom: var(--h3-margin-bottom);
     font-size: var(--h3-font-size);
-    font-style: italic;
+    /* font-style: italic; */
 
 }
 
