@@ -128,13 +128,6 @@ code {
     line-height: var(--code-font-size);
     /* font-style: italic;  */
 }
-em {
-    margin-top: 0;
-    margin-bottom:0px;
-    font-family: var(--default-font-family);
-    font-size: var(--code-font-size);
-    line-height: var(--code-font-size);
-}
 
 /* section blocks */
 dl {
