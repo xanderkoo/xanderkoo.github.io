@@ -4,6 +4,8 @@ var headshotNames = ["jtree.png", "ohdeer.png", "gradheadshot.png"];
 var numMenuBarsVisible = 1;
 
 function locationHashChanged() {    
+
+    
     let contentTitles = document.getElementsByClassName("title");
     let contentTexts = document.getElementsByClassName("content");
     for (let i = 0; i < contentTitles.length; i++) {
@@ -12,15 +14,25 @@ function locationHashChanged() {
     }
 
     if (location.hash === "" || location.hash === "#" || location.hash === "#home") {
-        toggleTextBoxSize(true);
+        toggleTextBoxSize(false);
         $("#home-title").removeAttr("hidden");
         $("#home-content").removeAttr("hidden");
+    } else if (location.hash === "#contact") {
+        toggleTextBoxSize(true);
+        $("#contact-title").removeAttr("hidden");
+        $("#contact-content").removeAttr("hidden");
         $("#headshot-box").stop().hide();
-    } else if (location.hash === "#aboutme") {
-        toggleTextBoxSize(false);
-        $("#aboutme-title").removeAttr("hidden");
-        $("#aboutme-content").removeAttr("hidden");
-    }
+    } else if (location.hash === "#cv") {
+        toggleTextBoxSize(true);
+        $("#cv-title").removeAttr("hidden");
+        $("#cv-content").removeAttr("hidden");
+        $("#headshot-box").stop().hide();
+    } else if (location.hash === "#updates") {
+        toggleTextBoxSize(true);
+        $("#updates-title").removeAttr("hidden");
+        $("#updates-content").removeAttr("hidden");
+        $("#headshot-box").stop().hide();
+    } 
 }
 window.onhashchange = locationHashChanged;
 
@@ -33,23 +45,38 @@ document.onreadystatechange = function(e) {
                 case "":
                 case "#":
                 case "#home":
-                    numMenuBarsVisible = 1;
-                    document.querySelector(":root").style.setProperty("--textbox-width", "calc(var(--main-container-width) - 1 * var(--menubar-width))");
+                    numMenuBarsVisible = 2;
                     $("#home-title").removeAttr("hidden");
                     $("#home-content").removeAttr("hidden");
-                    $("#headshot-box").stop().hide();
-                    break;
-                case "#aboutme":
+
                     document.querySelector(":root").style.setProperty("--textbox-width", "calc(var(--main-container-width) - 2 * var(--menubar-width))");
                     let imgSrc = headshotsDir + headshotNames[Math.floor(Math.random() * headshotNames.length)];
                     let promise = loadImageElement(imgSrc, $("#headshot").get(0));
-                    numMenuBarsVisible = 2;
-                    $("#aboutme-title").removeAttr("hidden");
-                    $("#aboutme-content").removeAttr("hidden");
-                    // $(".menubar.right")[0].hidden = false;
 
                     // Fade in the headshot if src is loaded
                     promise.then(() => $("#headshot-box").fadeIn(200));
+                    break;
+                case "#updates":
+                    numMenuBarsVisible = 1;
+                    document.querySelector(":root").style.setProperty("--textbox-width", "calc(var(--main-container-width) - 1 * var(--menubar-width))");
+                    $("#updates-title").removeAttr("hidden");
+                    $("#updates-content").removeAttr("hidden");
+                    $("#headshot-box").stop().hide();
+                    break;
+                case "#cv":
+                    numMenuBarsVisible = 1;
+                    document.querySelector(":root").style.setProperty("--textbox-width", "calc(var(--main-container-width) - 1 * var(--menubar-width))");
+                    $("#cv-title").removeAttr("hidden");
+                    $("#cv-content").removeAttr("hidden");
+                    $("#headshot-box").stop().hide();
+                    break;
+                case "#contact":
+                    numMenuBarsVisible = 1;
+                    document.querySelector(":root").style.setProperty("--textbox-width", "calc(var(--main-container-width) - 1 * var(--menubar-width))");
+                    $("#contact-title").removeAttr("hidden");
+                    $("#contact-content").removeAttr("hidden");
+                    $("#headshot-box").stop().hide();
+                    break;
             }
             break;
         case "complete":
@@ -74,12 +101,12 @@ async function loadImageElement(imgSrc, imageElement) {
 
 async function mouseOverButton(elt) {
     scrolling = true;
-    elt.style.cssText += ";border: var(--dashed-line-thickness) solid white; background-color: transparent"
+    elt.style.cssText += ";border: var(--dashed-line-thickness) solid white; background-color: rgb(32, 32, 32)"
 }
 
 function mouseOutButton(elt) {
     scrolling = false;
-    elt.style.cssText += ";border: 1px dashed white; background-color: rgb(32, 32, 32)"
+    elt.style.cssText += ";border: 1px dashed white; background-color: rgba(32, 32, 32, 0.75)"
 }
 
 function mouseOverBio(elt) {
