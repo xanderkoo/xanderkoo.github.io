@@ -30,6 +30,8 @@
     
     --font1: "Futura";
     --font2: "Verdana";
+
+    --textbox-overflow: hidden;
 }
 
 /* mobile portrait mode */
@@ -48,7 +50,7 @@
         --menubutton-height-ratio: 0.10; /* height of menu button as a ratio to the height of the menubar */
         --menubutton-height: calc(var(--menubutton-height-ratio) * var(--menubar-height));
         
-        --textbox-padding: 20px;
+        --textbox-padding: 15px;
         --textbox-width: calc(var(--main-container-width) - 1 * var(--menubar-width));
         --textbox-height: var(--main-container-height);
     
@@ -62,6 +64,8 @@
         --scrolltext-cycle-duration: 365s;
         --scrolltext-font-size: 12px;
         --scrolltext-padding: 12px;
+
+        --textbox-overflow: scroll;
     }
 }
 
@@ -95,6 +99,8 @@
         --scrolltext-cycle-duration: 365s;
         --scrolltext-font-size: 12px;
         --scrolltext-padding: 12px;
+
+        --textbox-overflow: scroll;
     }
 }
 
@@ -128,6 +134,8 @@
         --scrolltext-cycle-duration: 365s;
         --scrolltext-font-size: 18px;
         --scrolltext-padding: 12px;
+
+        --textbox-overflow: scroll;
     }
 }
 
@@ -161,7 +169,8 @@ canvas {
     height: calc(var(--textbox-height) - 2 * var(--textbox-padding) - 2 * var(--dashed-line-thickness));
     border: var(--dashed-line-thickness) dashed white;
     padding: var(--textbox-padding);
-    overflow: scroll;
+    overflow-x: hidden;
+    overflow-y: var(--textbox-overflow);
 }
 
 /* unvisited link */
@@ -221,7 +230,7 @@ a:active {
     border: var(--dashed-line-thickness) dashed white;
     /* padding: 5%; */
     cursor: pointer;
-    overflow: auto;
+    overflow: hidden;
     word-wrap: break-word;
 }
 .menubuttontext {
