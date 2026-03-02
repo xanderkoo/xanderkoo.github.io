@@ -4,7 +4,7 @@
     --dashed-line-animation-duration: 10s;
 
     --main-container-width: 70vw;
-    --main-container-height: 80vh;
+    --main-container-height: 90vh;
 
     --menubar-width-ratio: 0.20;
     --menubar-width: calc(var(--menubar-width-ratio) * var(--main-container-width));
@@ -13,19 +13,23 @@
     --menubutton-height-ratio: 0.10; /* height of menu button as a ratio to the height of the menubar */
     --menubutton-height: calc(var(--menubutton-height-ratio) * var(--menubar-height));
     
-    --textbox-padding: 20px;
+    --textbox-padding: 18px;
     --textbox-width: calc(var(--main-container-width) - 1 * var(--menubar-width));
     --textbox-height: var(--main-container-height);
 
     --title-font-size-default: 40px;
     --title-font-size-ideal: 2.5vmax; /* vmax is proportional to the longest side of the window */
 
-    --text-font-size-default: 16px;
+    --text-font-size-default: 20px;
     --text-font-size-ideal: 1vmax; /* vmax is proportional to the longest side of the window */
 
+    --scrolltext-visible: inline-block;
     --scrolltext-cycle-duration: 300s;
-    --scrolltext-font-size: 24px;
+    --scrolltext-font-size: 18px;
     --scrolltext-padding: 12px;
+    
+    --font1: "Futura";
+    --font2: "Verdana";
 }
 
 /* mobile portrait mode */
@@ -34,10 +38,10 @@
         --dashed-line-thickness: 1px;
         --dashed-line-animation-duration: 10s;
     
-        --main-container-width: 80vw;
-        --main-container-height: 80vh;
+        --main-container-width: 90vw;
+        --main-container-height: 90vh;
     
-        --menubar-width-ratio: 0.20;
+        --menubar-width-ratio: 0.25;
         --menubar-width: calc(var(--menubar-width-ratio) * var(--main-container-width));
         --menubar-height: var(--main-container-height);
         --menuitem-padding: 12px;
@@ -48,14 +52,15 @@
         --textbox-width: calc(var(--main-container-width) - 1 * var(--menubar-width));
         --textbox-height: var(--main-container-height);
     
-        --title-font-size-default: 24px;
+        --title-font-size-default: 28px;
         --title-font-size-ideal: 3.2vmax; /* vmax is proportional to the longest side of the window */
     
-        --text-font-size-default: 14px;
+        --text-font-size-default: 16px;
         --text-font-size-ideal: 1vmax; /* vmax is proportional to the longest side of the window */
     
-        --scrolltext-cycle-duration: 60s;
-        --scrolltext-font-size: 24px;
+        --scrolltext-visible: inline-block;
+        --scrolltext-cycle-duration: 365s;
+        --scrolltext-font-size: 12px;
         --scrolltext-padding: 12px;
     }
 }
@@ -66,14 +71,14 @@
         --dashed-line-thickness: 1px;
         --dashed-line-animation-duration: 10s;
     
-        --main-container-width: 80vw;
-        --main-container-height: 80vh;
+        --main-container-width: 90vw;
+        --main-container-height: 85vh;
     
         --menubar-width-ratio: 0.20;
         --menubar-width: calc(var(--menubar-width-ratio) * var(--main-container-width));
         --menubar-height: var(--main-container-height);
         --menuitem-padding: 12px;
-        --menubutton-height-ratio: 0.10; /* height of menu button as a ratio to the height of the menubar */
+        --menubutton-height-ratio: 0.11; /* height of menu button as a ratio to the height of the menubar */
         --menubutton-height: calc(var(--menubutton-height-ratio) * var(--menubar-height));
         
         --textbox-padding: 20px;
@@ -86,8 +91,9 @@
         --text-font-size-default: 14px;
         --text-font-size-ideal: 1vmax; /* vmax is proportional to the longest side of the window */
     
-        --scrolltext-cycle-duration: 60s;
-        --scrolltext-font-size: 20px;
+        --scrolltext-visible: inline-block;
+        --scrolltext-cycle-duration: 365s;
+        --scrolltext-font-size: 12px;
         --scrolltext-padding: 12px;
     }
 }
@@ -98,8 +104,8 @@
         --dashed-line-thickness: 1px;
         --dashed-line-animation-duration: 10s;
     
-        --main-container-width: 70vw;
-        --main-container-height: 80vh;
+        --main-container-width: 90vw;
+        --main-container-height: 90vh;
     
         --menubar-width-ratio: 0.20;
         --menubar-width: calc(var(--menubar-width-ratio) * var(--main-container-width));
@@ -118,8 +124,9 @@
         --text-font-size-default: 18px;
         --text-font-size-ideal: 1vmax; /* vmax is proportional to the longest side of the window */
     
-        --scrolltext-cycle-duration: 60s;
-        --scrolltext-font-size: 32px;
+        --scrolltext-visible: inline-block;
+        --scrolltext-cycle-duration: 365s;
+        --scrolltext-font-size: 18px;
         --scrolltext-padding: 12px;
     }
 }
@@ -148,7 +155,7 @@ canvas {
     position: absolute;
     left: calc(var(--menubar-width));
     margin: 0 0 0 0;
-    background-color: rgb(32, 32, 32);
+    background-color: rgba(32, 32, 32, 0.75);
     color: rgb(255, 255, 255);
     width: calc(var(--textbox-width) - 2 * var(--textbox-padding) - 2 * var(--dashed-line-thickness));
     height: calc(var(--textbox-height) - 2 * var(--textbox-padding) - 2 * var(--dashed-line-thickness));
@@ -159,12 +166,12 @@ canvas {
 
 /* unvisited link */
 a:link {
-    color: lightpink;
+    color: lightgreen;
 }
   
 /* visited link */
 a:visited {
-    color: pink
+    color: lightgreen;
 }
 
 /* mouse over link */
@@ -174,7 +181,7 @@ a:hover {
 
 /* selected link */
 a:active {
-    color: purple;
+    color: lightgreen;
 }
 
 .menubar {
@@ -208,7 +215,7 @@ a:active {
     /* box-sizing: border-box; */
     position: relative;
     margin: 0 0 var(--menuitem-padding) 0;
-    background-color: rgb(32, 32, 32);
+    background-color: rgba(32, 32, 32, 0.75);
     width: calc(var(--menubar-width) - var(--menuitem-padding));
     height: calc(var(--menubutton-height));
     border: var(--dashed-line-thickness) dashed white;
@@ -220,7 +227,8 @@ a:active {
 .menubuttontext {
     color: white;
     text-align: center;
-    font-family: "Courier New", Courier, monospace;
+    /* font-family: "Courier New", Courier, monospace; */
+    font-family: var(--font1), var(--font2), sans-serif;
     position: relative;
     top: 50%;
     transform: translateY(-50%);
@@ -233,9 +241,11 @@ a:active {
     font-size: var(--text-font-size-default); /* fallback */
     /* font-size: max(1vmax, 14px); */
     font-size: max(var(--text-font-size-default), var(--text-font-size-ideal));
+    padding: 5%;
 }
 .text {
-    font-family: "Courier New", Courier, monospace;
+    /* font-family: "Courier New", Courier, monospace; */
+    font-family: var(--font1), var(--font2), sans-serif;
     text-align: left;
 }
 .content {
@@ -252,13 +262,14 @@ a:active {
     width: 100vw;
     position: absolute;
     top: 0px;
+    
 }
 .scrolling {
     font-family: 'Hiragino Sans W1', 'Hiragino Kaku Gothic Pro', 'WenQuanYi Zen Hei', '微軟正黑體', '蘋果儷中黑', Helvetica, Arial, sans-serif;
     font-size: var(--scrolltext-font-size);
-    color: white;
+    color: rgba(32, 32, 32, 0.75);
     animation: marquee var(--scrolltext-cycle-duration) linear infinite;
-    display: inline-block;
+    display: var(--scrolltext-visible);
     padding-right: var(--scrolltext-padding);
     -webkit-user-select: none; /* Safari */        
     -moz-user-select: none; /* Firefox */
