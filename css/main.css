@@ -6,15 +6,17 @@
     --main-container-width: 70vw;
     --main-container-height: 90vh;
 
+    --flex-margin: 5px;
+
     --menubar-width-ratio: 0.20;
     --menubar-width: calc(var(--menubar-width-ratio) * var(--main-container-width));
     --menubar-height: var(--main-container-height);
-    --menuitem-padding: 12px;
+    --menuitem-padding: calc(var(--flex-margin) * 2);
     --menubutton-height-ratio: 0.10; /* height of menu button as a ratio to the height of the menubar */
     --menubutton-height: calc(var(--menubutton-height-ratio) * var(--menubar-height));
     
     --textbox-padding: 18px;
-    --textbox-width: calc(var(--main-container-width) - 1 * var(--menubar-width));
+    --textbox-width: calc(var(--main-container-width) - 2 * var(--menubar-width));
     --textbox-height: var(--main-container-height);
 
     --title-font-size-default: 40px;
@@ -46,7 +48,7 @@
         --menubar-width-ratio: 0.25;
         --menubar-width: calc(var(--menubar-width-ratio) * var(--main-container-width));
         --menubar-height: var(--main-container-height);
-        --menuitem-padding: 12px;
+        --menuitem-padding: calc(var(--flex-margin) * 2);
         --menubutton-height-ratio: 0.10; /* height of menu button as a ratio to the height of the menubar */
         --menubutton-height: calc(var(--menubutton-height-ratio) * var(--menubar-height));
         
@@ -81,7 +83,7 @@
         --menubar-width-ratio: 0.20;
         --menubar-width: calc(var(--menubar-width-ratio) * var(--main-container-width));
         --menubar-height: var(--main-container-height);
-        --menuitem-padding: 12px;
+        --menuitem-padding: calc(var(--flex-margin) * 2);
         --menubutton-height-ratio: 0.11; /* height of menu button as a ratio to the height of the menubar */
         --menubutton-height: calc(var(--menubutton-height-ratio) * var(--menubar-height));
         
@@ -116,7 +118,7 @@
         --menubar-width-ratio: 0.20;
         --menubar-width: calc(var(--menubar-width-ratio) * var(--main-container-width));
         --menubar-height: var(--main-container-height);
-        --menuitem-padding: 12px;
+        --menuitem-padding: calc(var(--flex-margin) * 2);
         --menubutton-height-ratio: 0.10; /* height of menu button as a ratio to the height of the menubar */
         --menubutton-height: calc(var(--menubutton-height-ratio) * var(--menubar-height));
         
@@ -148,9 +150,10 @@ body {
     background-color: black;
 }
 canvas {
-    margin:auto;
+    margin: auto;
 }
 .maincontainer {
+    display: flex;
     position: absolute;
     top: 50vh;
     left: 50vw;
@@ -160,12 +163,14 @@ canvas {
     margin: calc(var(--main-container-height) / -2) calc(var(--main-container-width) / -2);
 }
 #textbox {
-    position: absolute;
+    /* position: absolute; */
     left: calc(var(--menubar-width));
-    margin: 0 0 0 0;
+    margin: 0 var(--flex-margin) 0 var(--flex-margin);
     background-color: rgba(32, 32, 32, 0.75);
     color: rgb(255, 255, 255);
-    width: calc(var(--textbox-width) - 2 * var(--textbox-padding) - 2 * var(--dashed-line-thickness));
+    /* width: calc(var(--textbox-width) - 2 * var(--textbox-padding) - 2 * var(--dashed-line-thickness));
+    height: calc(var(--textbox-height) - 2 * var(--textbox-padding) - 2 * var(--dashed-line-thickness)); */
+    width: calc(var(--textbox-width) - 2 * var(--textbox-padding) - 2 * var(--dashed-line-thickness) - 2 * var(--flex-margin));
     height: calc(var(--textbox-height) - 2 * var(--textbox-padding) - 2 * var(--dashed-line-thickness));
     border: var(--dashed-line-thickness) dashed white;
     padding: var(--textbox-padding);
@@ -194,38 +199,45 @@ a:active {
 }
 
 .menubar {
-    position: absolute;
+    /* position: absolute; */
     height: var(--menubar-height);
     width: var(--menubar-width);
+    margin: 0 var(--flex-margin) 0 var(--flex-margin);
+
 }
 .left {
     left: 0;
     float: left;
 }
 
-#headshot-box {
-    position: relative;
-    margin: 0 0 var(--menuitem-padding) 0;
-    background-color: rgb(255, 255, 255);
-    width: calc(var(--menubar-width) - var(--menuitem-padding) - 2 * var(--dashed-line-thickness));
-    height: calc(var(--menubar-width) - var(--menuitem-padding) - 2 * var(--dashed-line-thickness));
-    border: var(--dashed-line-thickness) dashed white;
-    display: none;
-    overflow: hidden;
+.right {
     right: 0;
     float: right;
 }
 
+#headshot-box {
+    /* position: relative; */
+    margin: 0 var(--flex-margin) 0 var(--flex-margin);
+    background-color: rgb(255, 255, 255);
+    /* width: calc(var(--menubar-width) - var(--menuitem-padding) - 2 * var(--dashed-line-thickness));
+    height: calc(var(--menubar-width) - var(--menuitem-padding) - 2 * var(--dashed-line-thickness)); */
+    width: calc(var(--menubar-width) - 2 * var(--dashed-line-thickness));
+    height: calc(var(--menubar-width) - 2 * var(--dashed-line-thickness));
+    border: var(--dashed-line-thickness) dashed white;
+    display: none;
+    overflow: hidden;
+}
+
 #headshot {
-    max-width: 100%;
-    max-height: 100%;
+    width: 100%;
+    height: 100%;
 }
 .menubutton {
     /* box-sizing: border-box; */
     position: relative;
     margin: 0 0 var(--menuitem-padding) 0;
     background-color: rgba(32, 32, 32, 0.75);
-    width: calc(var(--menubar-width) - var(--menuitem-padding));
+    width: calc(var(--menubar-width) - 2 * var(--dashed-line-thickness));
     height: calc(var(--menubutton-height));
     border: var(--dashed-line-thickness) dashed white;
     /* padding: 5%; */
