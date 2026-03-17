@@ -1,5 +1,5 @@
 var headshotsDir = "./images/me/";
-var headshotNames = ["jtree.png", "ohdeer.png", "gradheadshot.png"];
+var headshotNames = ["zanderk.jpeg", "jtree.jpeg", "ohdeer.jpeg", "gradheadshot.jpeg"];
 
 var numMenuBarsVisible = 1;
 
@@ -137,10 +137,10 @@ function toggleTextBoxSize(val) {
     let style = getComputedStyle(document.body);
 
     let mainContainerWidth = $(".maincontainer").width();
-    let menubarWidth = parseFloat(style.getPropertyValue("--menubar-width-ratio")) * mainContainerWidth;
+    let menubarWidth = parseFloat(style.getPropertyValue("--menubar-width-ratio")) * mainContainerWidth + 2 * parseFloat(style.getPropertyValue("--flex-margin")) - 2 * parseFloat(style.getPropertyValue("--dashed-line-thickness"));
 
-    let oldSize = $("#textbox").outerWidth();
-    let newSize = mainContainerWidth - (val ? 1 : 2) * menubarWidth;
+    let oldSize = $("#textbox").outerWidth() + 2 * parseFloat(style.getPropertyValue("--flex-margin"));
+    let newSize = mainContainerWidth - (val ? 1 : 2) * (menubarWidth);
 
     animateResizeTextBox(oldSize, newSize)
 }
@@ -177,7 +177,7 @@ function animateResizeTextBox(oldVal, newVal) {
         lastTime = ms;
 
         // Calculate velocity based on distance + how long has passed since last tick
-        let rate = (targetValue - currentValue) / 0.15;
+        let rate = (targetValue - currentValue) / 0.11;
         let elapsedSeconds = elapsed / 1000;
 
         // Adjust variable value based on time elapsed
@@ -203,7 +203,7 @@ function animateResizeTextBox(oldVal, newVal) {
                 document.querySelector(":root").style.setProperty(variableName, `${mainContainerWidth - 2 * menubarWidth}vw`);
                 $("#headshot-box").stop().hide();
                 // Fade in the headshot if src is loaded
-                promise.then(() => { $("#headshot-box").fadeIn(200) });
+                promise.then(() => { $("#headshot-box").fadeIn(150) });
             } else if (numMenuBarsVisible === 1) {
                 document.querySelector(":root").style.setProperty(variableName, `${mainContainerWidth - menubarWidth}vw`);
             }
